@@ -88,8 +88,7 @@ defmodule Blur.Adapters.IRC do
   def handle_info({:connected, server, port}, state = {bot, opts, client}) do
     Logger.info("Connected to #{server}:#{port}")
 
-    # pass = Keyword.fetch!(opts, :password)
-    pass = System.fetch_env!("TWITCH_CLIENT_KEY")
+    pass = get_twitch_pass(opts)
 
     nick = Keyword.fetch!(opts, :name)
 
@@ -192,4 +191,12 @@ defmodule Blur.Adapters.IRC do
     Logger.debug("Unknown message: #{inspect(msg)}")
     {:noreply, state}
   end
+
+  defp get_twitch_pass(opts) do
+    case Keyword.fetch(opts, :twitch_client_key) do
+      {:ok, key} -> key
+      :error -> System.fetch_env!("TWITCH_CLIENT_KEY")
+    end
+  end
+
 end

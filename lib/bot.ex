@@ -161,8 +161,17 @@ defmodule Blur.Bot do
   @doc """
   Send a message via the bot.
   """
+  @spec send(pid(), %Blur.Message{}) :: :ok
   def send(pid, msg) do
     GenServer.cast(pid, {:send, msg})
+  end
+
+  @doc """
+  Join a channel via the bot
+  """
+  @spec join(pid(), binary()) :: :ok
+  def join(pid, channel) do
+    GenServer.cast(pid, {:join, channel})
   end
 
   @doc """

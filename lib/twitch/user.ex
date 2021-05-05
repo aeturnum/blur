@@ -38,4 +38,8 @@ defmodule Blur.Twitch.User do
       badges: map["badges"] |> Blur.Twitch.Badge.parse()
     }
   end
+
+  @spec owner?(user :: %Blur.Twitch.User{}, channel :: binary()) :: boolean()
+  def owner?(%{name: login}, "# "<> ch_name) when ch_name == login, do: true
+  def owner?(_, _), do: false
 end

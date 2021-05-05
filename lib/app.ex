@@ -14,9 +14,11 @@ defmodule Blur.App do
 
   @impl true
   @spec start(atom, list) :: {:error, atom} | {:ok, pid()}
-  def start(_type, _args) do
+  def start(_type, opts) do
     # validate environmental variables
-    System.fetch_env!("TWITCH_CLIENT_KEY")
+    if not Keyword.has_key?(opts, :twitch_client_key) do
+      System.fetch_env!("TWITCH_CLIENT_KEY")
+    end
 
     Supervisor.start_link(Blur.Supervisor, [])
   end

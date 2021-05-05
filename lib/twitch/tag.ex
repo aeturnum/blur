@@ -10,6 +10,7 @@ defmodule Blur.Twitch.Tag do
       "CLEARMSG" -> clearmsg(channel, msg, tags)
       "GLOBALUSERSTATE" -> globaluserstate(tags)
       "PRIVMSG" -> privmsg(channel, user, msg, tags)
+      "WHISPER" -> privmsg(channel, user, msg, tags)
       "ROOMSTATE" -> roomstate(channel, tags)
       "USERNOTICE" -> usernotice(channel, msg, tags)
       "USERSTATE" -> userstate(channel, msg, tags)

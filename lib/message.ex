@@ -11,6 +11,19 @@ defmodule Blur.Message do
             type: "",
             system: "",
             user: nil,
-            tags: [],
+            tags: %{},
             text: ""
+
+  @type t :: %{
+    bot: pid(),
+    ref: reference(), # ???
+    mod: atom(),
+    channel: binary(),
+    roomid: binary(),
+    type: binary(),
+    system: binary(),
+    user: Blur.Twitch.User.t(),
+    tags: map(),
+    text: binary()
+  }
 end
