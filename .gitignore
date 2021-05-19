@@ -13,3 +13,5 @@ Mnesia.*
 data/*
 dump.rdb
 errors
+
+.vscode/
